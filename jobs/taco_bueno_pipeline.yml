@@ -1,0 +1,48 @@
+resources:
+  jobs:
+    Taco_Bueno_Pipeline:
+      name: Taco_Bueno_Pipeline
+      tasks:
+        - task_key: 01_Data_Preparation
+          notebook_task:
+            notebook_path: /Workspace/Users/a01663116@tec.mx/Taco Bueno/Week 4/01 Data &
+              Quality/01_data_preparation
+            source: WORKSPACE
+        - task_key: 02_Data_Quality_Checks
+          depends_on:
+            - task_key: 01_Data_Preparation
+          notebook_task:
+            notebook_path: /Workspace/Users/a01663116@tec.mx/Taco Bueno/Week 4/01 Data &
+              Quality/02_data_quality_checks
+            source: WORKSPACE
+        - task_key: 03_Stores_and_Times
+          depends_on:
+            - task_key: 02_Data_Quality_Checks
+          notebook_task:
+            notebook_path: /Workspace/Users/a01663116@tec.mx/Taco Bueno/Week 4/02 Stores &
+              Times/Task 2 Stores and Times/02_stores_and_times
+            source: WORKSPACE
+        - task_key: 04_Products_and_Prices
+          depends_on:
+            - task_key: 02_Data_Quality_Checks
+          notebook_task:
+            notebook_path: /Workspace/Users/a01663116@tec.mx/Taco Bueno/Week 4/03 Products &
+              Prices/Task 3 Products & Prices/03_products_and_prices
+            source: WORKSPACE
+        - task_key: 05_Discounts_and_Baskets
+          depends_on:
+            - task_key: 02_Data_Quality_Checks
+          notebook_task:
+            notebook_path: /Workspace/Users/a01663116@tec.mx/Taco Bueno/Week 4/04 Discounts
+              & Baskets/Task 4 Discounts & Baskets/04_discounts_and_baskets
+            source: WORKSPACE
+        - task_key: 06_Economia
+          depends_on:
+            - task_key: 02_Data_Quality_Checks
+          notebook_task:
+            notebook_path: /Workspace/Users/a01663116@tec.mx/Taco Bueno/Week 4/05 Economic
+              Analysis/05_economia
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
